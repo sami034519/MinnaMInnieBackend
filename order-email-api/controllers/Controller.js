@@ -31,11 +31,11 @@ router.post("/", async (req, res) => {
       subject: "🛍️ New Product Order",
       html: `
         <h2>🛒 New Product Order</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Address:</strong> ${adress}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Customer Name:</strong> ${name}</p>
+        <p><strong>Customer Email:</strong> ${email}</p>
+        <p><strong>Customer Phone:</strong> ${phone}</p>
+        <p><strong> Customer Address:</strong> ${adress}</p>
+        <p><strong>Message By Customer:</strong> ${message}</p>
         <hr />
         <h3>📦 Product Details</h3>
         <p><strong>Title:</strong> ${product.title}</p>
