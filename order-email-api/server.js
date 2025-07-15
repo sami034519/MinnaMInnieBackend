@@ -4,20 +4,36 @@ import router from "./controllers/Controller.js"; // Make sure this path is corr
 
 const app = express();
 
-// CORS Configuration (update frontend URL if needed)
+// ✅ List of all allowed frontend domains
+const allowedOrigins = [
+  "https://minnaminnie.vercel.app",
+  "https://minnaminnie.com",
+  "https://www.minnaminnie.com",
+  "https://minnaminnie.pk",
+  "https://www.minnaminnie.pk",
+  "http://localhost:3000", // optional: dev environment
+];
+
+// ✅ CORS middleware
 app.use(
   cors({
-    origin: "https://minnaminnie.vercel.app", // allow frontend domain
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS Error: Not allowed - " + origin));
+      }
+    },
   })
 );
 
-// Middleware to parse JSON
+// ✅ Parse incoming JSON
 app.use(express.json());
 
-// Mount the email order route
+// ✅ Route
 app.use("/api/order", router);
 
-// Vercel Handler - required for serverless deployment
+// ✅ Export Vercel serverless handler
 export default function handler(req, res) {
   return app(req, res);
 }
